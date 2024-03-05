@@ -10,10 +10,19 @@ public class Player : MonoBehaviour
 
     [SerializeField] Transform[] LaneTransforms;
 
+    [SerializeField] float moveSpeed = 20f;
+
+    [SerializeField] float jumpHeight = 2.5f;
+
+    [SerializeField] Transform groundCheckTransform;
+    [SerializeField] [Range(0, 1)] float groundCheckRadius = 0.2f;
+    [SerializeField] LayerMask GroundCheckMask;
+
     Vector3 Destination;
 
     int CurrentLaneIndex;
 
+    
     private void OnEnable()
     {
         if (playerInput == null)
@@ -31,6 +40,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerInput.Gameplay.Move.performed += MovePerformed;
+        playerInput.Gameplay.Jump.performed += JumpPerformed;
         for (int i = 0; i < LaneTransforms.Length; i++)
         {
             if (LaneTransforms[i].position == transform.position)
@@ -41,8 +51,28 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void JumpPerformed(InputAction.CallbackContext obj)
+    {
+        if (!IsOnGround())
+        {
+            return;
+        }
+
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            float jumpUpSpeed = Mathf.Sqrt(2 * jumpHeight * Physics.gravity.magnitude);
+            rb.AddForce(new Vector3(0f, jumpUpSpeed, 0f), ForceMode.VelocityChange);
+        }
+    }
+
     private void MovePerformed(InputAction.CallbackContext obj)
     {
+        if (!IsOnGround())
+        {
+            return;
+        }
+
         float InputValue = obj.ReadValue<float>();
         if (InputValue > 0)
         {
@@ -80,6 +110,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Destination;
+        if (!IsOnGround())
+        {
+            Debug.Log("yerde deðiliz");
+            return;
+        }
+        Debug.Log("yerdeyiz");
+        float TransformX = Mathf.Lerp(transform.position.x, Destination.x, Time.deltaTime*moveSpeed);
+        transform.position = new Vector3(TransformX, transform.position.y, transform.position.z);
+        
+    }
+
+    bool IsOnGround()
+    {
+        return (Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius , GroundCheckMask));
+       
     }
 }
