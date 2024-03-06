@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     int CurrentLaneIndex;
 
+    Animator animator;
+
     
     private void OnEnable()
     {
@@ -49,6 +51,8 @@ public class Player : MonoBehaviour
                 Destination = LaneTransforms[i].position;
             }
         }
+
+        animator = GetComponent<Animator>();
     }
 
     private void JumpPerformed(InputAction.CallbackContext obj)
@@ -112,10 +116,15 @@ public class Player : MonoBehaviour
     {
         if (!IsOnGround())
         {
+            animator.SetBool("isOnGround", false);
             Debug.Log("yerde deðiliz");
             return;
         }
+
+        animator.SetBool("isOnGround", true);
         Debug.Log("yerdeyiz");
+
+
         float TransformX = Mathf.Lerp(transform.position.x, Destination.x, Time.deltaTime*moveSpeed);
         transform.position = new Vector3(TransformX, transform.position.y, transform.position.z);
         
