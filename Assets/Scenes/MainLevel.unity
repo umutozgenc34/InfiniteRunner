@@ -271,14 +271,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3850577061924027617, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
-      propertyPath: roadBlocks.Array.data[0]
-      value: 
-      objectReference: {fileID: 5678888130513429866, guid: e00e5932ff2d91847830b4b9678f9bc0, type: 3}
-    - target: {fileID: 3850577061924027617, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
-      propertyPath: roadBlocks.Array.data[1]
-      value: 
-      objectReference: {fileID: 5678888130513429866, guid: aaefbbad53953d8458408c3f3947a15f, type: 3}
     - target: {fileID: 8213784556147975088, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
       propertyPath: m_Name
       value: WorldGenerator

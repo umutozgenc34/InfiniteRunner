@@ -117,12 +117,12 @@ public class Player : MonoBehaviour
         if (!IsOnGround())
         {
             animator.SetBool("isOnGround", false);
-            Debug.Log("yerde deðiliz");
+            
             return;
         }
 
         animator.SetBool("isOnGround", true);
-        Debug.Log("yerdeyiz");
+        
 
 
         float TransformX = Mathf.Lerp(transform.position.x, Destination.x, Time.deltaTime*moveSpeed);
