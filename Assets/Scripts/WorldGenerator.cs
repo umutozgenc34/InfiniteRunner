@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
+    [Header("Road Blocks")]
     [SerializeField] float envMoveSpeed = 4f;
     [SerializeField] Transform startingPoint;
     [SerializeField] Transform endPoint;
-
     [SerializeField] GameObject[] roadBlocks;
-    [SerializeField] GameObject[] buildings;
 
+    [Header("Buildings")]
+    [SerializeField] GameObject[] buildings;
     [SerializeField] Transform[] buildingSpawnPoints;
     [SerializeField] Vector2 buildingSpawnScaleRange = new Vector2(0.6f,0.9f);
 
+    [Header("Street Lights")]
+    [SerializeField] GameObject streetLight;
+    [SerializeField] Transform[] streetLightSpawnPoints;
     Vector3 MoveDirection;
 
     void Start()
@@ -46,22 +50,41 @@ public class WorldGenerator : MonoBehaviour
             moveComp.SetMoveDir(MoveDir);
         }
 
-        foreach (Transform BuildingSpawnPoint in buildingSpawnPoints)
-        {
-            Vector3 BuildingSpawnLoc = SpawnPosition + (BuildingSpawnPoint.position - startingPoint.position);
-            int rotationOffsetBy90 = Random.Range(0, 3);
-            Quaternion BuildingSpawnRotation = Quaternion.Euler(0, rotationOffsetBy90 * 90, 0);
-            Vector3 BuildingSpawnSize = Vector3.one * Random.Range(buildingSpawnScaleRange.x, buildingSpawnScaleRange.y);
-
-            int buildPick = Random.Range(0, buildings.Length);
-            GameObject newBuilding = Instantiate(buildings[buildPick], BuildingSpawnLoc, BuildingSpawnRotation,newBlock.transform);
-            newBuilding.transform.localScale = BuildingSpawnSize;
-        }
+        SpawnBuildings(newBlock);
+        SpawnStreetLights(newBlock);
 
         return newBlock;
 
 
     }
+
+    private void SpawnStreetLights(GameObject parentBlock)
+    {
+        foreach (Transform StreetLightSpawnPoint in streetLightSpawnPoints)
+        {
+            Vector3 SpawnLoc = parentBlock.transform.position + (StreetLightSpawnPoint.position - startingPoint.position);
+            Quaternion SpawnRot = Quaternion.LookRotation((StreetLightSpawnPoint.position - startingPoint.position).normalized, Vector3.up);
+            Quaternion SpawnRotOffset = Quaternion.Euler(0, 90, 0);
+            GameObject newStreetLight = Instantiate(streetLight, SpawnLoc, SpawnRot*SpawnRotOffset, parentBlock.transform);
+        }
+        
+    }
+
+    private void SpawnBuildings(GameObject parentBlock)
+    {
+        foreach (Transform BuildingSpawnPoint in buildingSpawnPoints)
+        {
+            Vector3 BuildingSpawnLoc = parentBlock.transform.position + (BuildingSpawnPoint.position - startingPoint.position);
+            int rotationOffsetBy90 = Random.Range(0, 3);
+            Quaternion BuildingSpawnRotation = Quaternion.Euler(0, rotationOffsetBy90 * 90, 0);
+            Vector3 BuildingSpawnSize = Vector3.one * Random.Range(buildingSpawnScaleRange.x, buildingSpawnScaleRange.y);
+
+            int buildPick = Random.Range(0, buildings.Length);
+            GameObject newBuilding = Instantiate(buildings[buildPick], BuildingSpawnLoc, BuildingSpawnRotation, parentBlock.transform);
+            newBuilding.transform.localScale = BuildingSpawnSize;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
