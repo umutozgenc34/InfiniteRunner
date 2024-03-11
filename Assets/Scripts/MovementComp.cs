@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class MovementComp : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
+    float moveSpeed =20f;
     [SerializeField] Vector3 moveDir = Vector3.forward;
 
     Vector3 Destination;
     void Start()
     {
-        
+        SpeedController speedController = FindObjectOfType<SpeedController>();
+        if (speedController!= null)
+        {
+            speedController.onGlobalSpeedChanged += SetMoveSpeed;
+            SetMoveSpeed(speedController.GetGlobalSpeed());
+        }
     }
 
     public void SetDestination(Vector3 newDestination)
@@ -33,8 +38,8 @@ public class MovementComp : MonoBehaviour
         }
     }
 
-    internal void SetMoveSpeed(float envMoveSpeed)
+    internal void SetMoveSpeed(float newMoveSpeed)
     {
-        moveSpeed = envMoveSpeed;
+        moveSpeed = newMoveSpeed;
     }
 }

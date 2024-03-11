@@ -5,7 +5,6 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour
 {
     [Header("Road Blocks")]
-    [SerializeField] float envMoveSpeed = 4f;
     [SerializeField] Transform startingPoint;
     [SerializeField] Transform endPoint;
     [SerializeField] GameObject[] roadBlocks;
@@ -18,7 +17,55 @@ public class WorldGenerator : MonoBehaviour
     [Header("Street Lights")]
     [SerializeField] GameObject streetLight;
     [SerializeField] Transform[] streetLightSpawnPoints;
+
+    [Header("Threats")]
+    [SerializeField] Vector3 OccupationDetectionHalfExtend;
+    [SerializeField] Threat[] threats;
+    [SerializeField] Transform[] lanes;
+
     Vector3 MoveDirection;
+
+    bool GetRandomSpawnPoint(out Vector3 spawnPoint)
+    {
+        Vector3[] spawnPoints = GetAvaliableSpawnPoints();
+        if (spawnPoints.Length == 0)
+        {
+            spawnPoint = new Vector3(0, 0, 0);
+            return false;
+            
+        }
+        int pick = Random.Range(0, spawnPoints.Length);
+        spawnPoint = spawnPoints[pick];
+        return true;
+        
+    }
+
+    Vector3[] GetAvaliableSpawnPoints()
+    {
+        List<Vector3> AvaliableSpawnPoints = new List<Vector3>();
+        foreach (Transform spawnTrans in lanes)
+        {
+            Vector3 spawnPoint = spawnTrans.position + new Vector3(0, 0, startingPoint.position.z);
+            if (!isPositionOccupied(spawnPoint))
+            {
+                AvaliableSpawnPoints.Add(spawnPoint);
+            }
+        }
+        return AvaliableSpawnPoints.ToArray();
+    }
+
+    bool isPositionOccupied(Vector3 position)
+    {
+        Collider[] cols = Physics.OverlapBox(position, OccupationDetectionHalfExtend);
+        foreach (Collider col in cols)
+        {
+            if (col.gameObject.tag == "Threat")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     void Start()
     {
@@ -32,10 +79,35 @@ public class WorldGenerator : MonoBehaviour
             nextBlockPosition += MoveDirection * blockLength;
             
         }
-        
+
+        StartSpawnThreats();
 
     }
 
+    private void StartSpawnThreats()
+    {
+        foreach (Threat threat in threats)
+        {
+            StartCoroutine(SpawnThreathCoroutine(threat));
+        }
+    }
+
+    IEnumerator SpawnThreathCoroutine(Threat threatToSpawn)
+    {
+        while (true)
+        {
+            if (GetRandomSpawnPoint(out Vector3 spawnPoint))
+            {
+                Threat newThreat = Instantiate(threatToSpawn, spawnPoint, Quaternion.identity);
+
+                newThreat.GetMovementComponent().SetDestination(endPoint.position);
+                newThreat.GetMovementComponent().SetMoveDir(MoveDirection);
+            }
+            
+
+            yield return new WaitForSeconds(threatToSpawn.SpawnInterval);
+        }
+    }
     GameObject SpawnNewBlock(Vector3 SpawnPosition, Vector3 MoveDir)
     {
         int pick = Random.Range(0, roadBlocks.Length);
@@ -45,7 +117,7 @@ public class WorldGenerator : MonoBehaviour
         MovementComp moveComp = newBlock.GetComponent<MovementComp>();
         if (moveComp != null)
         {
-            moveComp.SetMoveSpeed(envMoveSpeed);
+            
             moveComp.SetDestination(endPoint.position);
             moveComp.SetMoveDir(MoveDir);
         }
@@ -93,8 +165,8 @@ public class WorldGenerator : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log($"{other.gameObject.name}ayrýldý");
-        if (other.gameObject != null)
+        
+        if (other.gameObject != null && other.gameObject.tag == "Road")
         {
             GameObject newBlock = SpawnNewBlock(other.transform.position, MoveDirection);
             float newBlockHalfwidth = newBlock.GetComponent<Renderer>().bounds.size.z/2f;
