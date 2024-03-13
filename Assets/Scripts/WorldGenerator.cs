@@ -23,6 +23,9 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField] Threat[] threats;
     [SerializeField] Transform[] lanes;
 
+    [Header("Pickups")]
+    [SerializeField] Pickup[] pickups;
+
     Vector3 MoveDirection;
 
     bool GetRandomSpawnPoint(out Vector3 spawnPoint)
@@ -80,7 +83,11 @@ public class WorldGenerator : MonoBehaviour
             
         }
 
-        StartSpawnThreats();
+        //StartSpawnThreats();
+
+        Pickup newPickup = Instantiate(pickups[0], startingPoint.position, Quaternion.identity);
+        newPickup.GetComponent<MovementComp>().SetDestination(endPoint.position);
+        newPickup.GetComponent<MovementComp>().SetMoveDir(MoveDirection);
 
     }
 
