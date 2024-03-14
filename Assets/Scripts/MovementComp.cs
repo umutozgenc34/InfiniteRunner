@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class MovementComp : MonoBehaviour
 {
-    float moveSpeed =20f;
+    [SerializeField] float moveSpeed =20f;
     [SerializeField] Vector3 moveDir = Vector3.forward;
 
-    Vector3 Destination;
+    [SerializeField] Vector3 Destination;
     void Start()
     {
         SpeedController speedController = FindObjectOfType<SpeedController>();

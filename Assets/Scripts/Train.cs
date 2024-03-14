@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Threat : Spawnable
+public class Train : MonoBehaviour
 {
-    
+    [SerializeField] TrainSegments segmentPrefab;
+    [SerializeField] Vector2 SegmentCountRange;
     void Start()
     {
         
@@ -15,5 +16,4 @@ public class Threat : Spawnable
     {
         
     }
-    
 }

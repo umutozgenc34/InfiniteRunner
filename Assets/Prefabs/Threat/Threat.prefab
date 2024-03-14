@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2103298893664545617}
   - component: {fileID: 3983614455201126253}
   - component: {fileID: 449253432362808476}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Threat
   m_TagString: Threat
   m_Icon: {fileID: 0}
@@ -60,7 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8d1ba7155ce5f439a209c3949af810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 20
   moveDir: {x: 0, y: 0, z: 1}
+  Destination: {x: 0, y: 0, z: 0}
 --- !u!1 &5667193166030700927
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127721160715484776}
   - component: {fileID: 5529742027176261444}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collision
   m_TagString: Threat
   m_Icon: {fileID: 0}

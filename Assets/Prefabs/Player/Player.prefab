@@ -134,7 +134,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   moveSpeed: 20
-  jumpHeight: 1.2
+  jumpHeight: 1.5
   groundCheckTransform: {fileID: 3864642917847967838}
   groundCheckRadius: 0.2
   GroundCheckMask:

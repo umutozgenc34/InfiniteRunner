@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Road
   - Threat
+  - Pickup
   layers:
   - Default
   - TransparentFX

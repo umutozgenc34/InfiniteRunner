@@ -28,9 +28,9 @@ public class WorldGenerator : MonoBehaviour
 
     Vector3 MoveDirection;
 
-    bool GetRandomSpawnPoint(out Vector3 spawnPoint)
+    bool GetRandomSpawnPoint(out Vector3 spawnPoint , string occupationCheckTag)
     {
-        Vector3[] spawnPoints = GetAvaliableSpawnPoints();
+        Vector3[] spawnPoints = GetAvaliableSpawnPoints(occupationCheckTag);
         if (spawnPoints.Length == 0)
         {
             spawnPoint = new Vector3(0, 0, 0);
@@ -43,13 +43,13 @@ public class WorldGenerator : MonoBehaviour
         
     }
 
-    Vector3[] GetAvaliableSpawnPoints()
+    Vector3[] GetAvaliableSpawnPoints(string occupationCheckTag)
     {
         List<Vector3> AvaliableSpawnPoints = new List<Vector3>();
         foreach (Transform spawnTrans in lanes)
         {
             Vector3 spawnPoint = spawnTrans.position + new Vector3(0, 0, startingPoint.position.z);
-            if (!isPositionOccupied(spawnPoint))
+            if (!isPositionOccupied(spawnPoint , occupationCheckTag))
             {
                 AvaliableSpawnPoints.Add(spawnPoint);
             }
@@ -57,12 +57,12 @@ public class WorldGenerator : MonoBehaviour
         return AvaliableSpawnPoints.ToArray();
     }
 
-    bool isPositionOccupied(Vector3 position)
+    bool isPositionOccupied(Vector3 position , string occupationCheckTag)
     {
         Collider[] cols = Physics.OverlapBox(position, OccupationDetectionHalfExtend);
         foreach (Collider col in cols)
         {
-            if (col.gameObject.tag == "Threat")
+            if (col.gameObject.tag == occupationCheckTag)
             {
                 return true;
             }
@@ -83,7 +83,7 @@ public class WorldGenerator : MonoBehaviour
             
         }
 
-        //StartSpawnThreats();
+        StartSpawnElements();
 
         Pickup newPickup = Instantiate(pickups[0], startingPoint.position, Quaternion.identity);
         newPickup.GetComponent<MovementComp>().SetDestination(endPoint.position);
@@ -91,28 +91,32 @@ public class WorldGenerator : MonoBehaviour
 
     }
 
-    private void StartSpawnThreats()
+    private void StartSpawnElements()
     {
         foreach (Threat threat in threats)
         {
-            StartCoroutine(SpawnThreathCoroutine(threat));
+            StartCoroutine(SpawnElement(threat));
+        }
+        foreach (Pickup pickup in pickups)
+        {
+            StartCoroutine(SpawnElement(pickup));
         }
     }
 
-    IEnumerator SpawnThreathCoroutine(Threat threatToSpawn)
+    IEnumerator SpawnElement(Spawnable elementToSpawn)
     {
         while (true)
         {
-            if (GetRandomSpawnPoint(out Vector3 spawnPoint))
+            if (GetRandomSpawnPoint(out Vector3 spawnPoint ,elementToSpawn.gameObject.tag))
             {
-                Threat newThreat = Instantiate(threatToSpawn, spawnPoint, Quaternion.identity);
+                Spawnable newThreat = Instantiate(elementToSpawn, spawnPoint, Quaternion.identity);
 
                 newThreat.GetMovementComponent().SetDestination(endPoint.position);
                 newThreat.GetMovementComponent().SetMoveDir(MoveDirection);
             }
             
 
-            yield return new WaitForSeconds(threatToSpawn.SpawnInterval);
+            yield return new WaitForSeconds(elementToSpawn.SpawnInterval);
         }
     }
     GameObject SpawnNewBlock(Vector3 SpawnPosition, Vector3 MoveDir)
