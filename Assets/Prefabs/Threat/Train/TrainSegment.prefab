@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1598125808211795065}
   - component: {fileID: 4512838552935167945}
-  m_Layer: 0
+  - component: {fileID: -1562214992293709421}
+  m_Layer: 6
   m_Name: TrainSegment
-  m_TagString: Untagged
+  m_TagString: Threat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +51,23 @@ MonoBehaviour:
   - {fileID: 4751414987417736689, guid: 53482e53d9c069d40a6241a8f6eb88dc, type: 3}
   - {fileID: -8948614274438997888, guid: 3d02c7aa51fa3714fa436f910363b56f, type: 3}
   trainMesh: {fileID: 7372124099708655215}
+  trainCollider: {fileID: 3517753279598071831}
+  movementComp: {fileID: -1562214992293709421}
+--- !u!114 &-1562214992293709421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6891398960278780912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8d1ba7155ce5f439a209c3949af810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 20
+  moveDir: {x: 0, y: 0, z: 1}
+  Destination: {x: 0, y: 0, z: 0}
 --- !u!1001 &6226905051077115425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88d6ffcd638f8394495876808b5ea3f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.193
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88d6ffcd638f8394495876808b5ea3f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -101,6 +119,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 88d6ffcd638f8394495876808b5ea3f4, type: 3}
       propertyPath: m_Name
       value: train_head_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88d6ffcd638f8394495876808b5ea3f4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88d6ffcd638f8394495876808b5ea3f4, type: 3}
+      propertyPath: m_TagString
+      value: Threat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

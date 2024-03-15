@@ -10,6 +10,10 @@ public class TrainSegments : MonoBehaviour
     [SerializeField] Mesh[] segmentMeshes;
 
     [SerializeField] MeshFilter trainMesh;
+    [SerializeField] BoxCollider trainCollider;
+    [SerializeField] MovementComp movementComp;
+
+    bool isHead = false;
 
     void Start()
     {
@@ -18,6 +22,9 @@ public class TrainSegments : MonoBehaviour
 
     private void RandomTrainMesh()
     {
+        if (isHead)
+            return;
+
         int pick = Random.Range(0, segmentMeshes.Length);
         trainMesh.mesh = segmentMeshes[pick];
     }
@@ -26,5 +33,21 @@ public class TrainSegments : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public float GetSegmentLength()
+    {
+        return trainCollider.size.z;
+    }
+
+    internal void SetHead()
+    {
+        trainMesh.mesh = headMesh;
+        isHead = true;
+    }
+
+    internal MovementComp GetMovementComponent()
+    {
+        return movementComp;
     }
 }

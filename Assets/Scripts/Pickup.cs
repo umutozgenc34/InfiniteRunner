@@ -8,6 +8,8 @@ public class Pickup : Spawnable
     [SerializeField] float speedEffect;
     [SerializeField] float speedEffectDuration;
 
+    bool bAdjusted = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -27,11 +29,12 @@ public class Pickup : Spawnable
             Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "Threat")
+        if (other.gameObject.tag == "Threat" && !bAdjusted )
         {
-            Collider col = gameObject.GetComponent<Collider>();
+            Collider col = other.GetComponent<Collider>();
             if (col != null)
             {
+                bAdjusted = true;
                 transform.position = col.bounds.center +( col.bounds.extents.y + gameObject.GetComponent<Collider>().bounds.center.y) * Vector3.up;
             }
         }

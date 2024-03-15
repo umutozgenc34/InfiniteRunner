@@ -42,4 +42,11 @@ public class MovementComp : MonoBehaviour
     {
         moveSpeed = newMoveSpeed;
     }
+
+    public void CopyFrom(MovementComp other)
+    {
+        SetMoveSpeed(other.moveSpeed);
+        SetMoveDir(other.moveDir);
+        SetDestination(other.Destination);
+    }
 }

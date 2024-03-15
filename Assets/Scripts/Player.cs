@@ -17,12 +17,17 @@ public class Player : MonoBehaviour
     [SerializeField] Transform groundCheckTransform;
     [SerializeField] [Range(0, 1)] float groundCheckRadius = 0.2f;
     [SerializeField] LayerMask GroundCheckMask;
+    [SerializeField] Vector3 BlockageCheckHalfExtend;
+    [SerializeField] string BlockageCheckTag = "Threat";
 
     Vector3 Destination;
 
     int CurrentLaneIndex;
 
     Animator animator;
+
+    Camera playerCamera;
+    Vector3 playerCameraOffset;
 
     
     private void OnEnable()
@@ -53,6 +58,9 @@ public class Player : MonoBehaviour
         }
 
         animator = GetComponent<Animator>();
+        playerCamera = Camera.main;
+        playerCameraOffset = playerCamera.transform.position - transform.position;
+
     }
 
     private void JumpPerformed(InputAction.CallbackContext obj)
@@ -78,38 +86,28 @@ public class Player : MonoBehaviour
         }
 
         float InputValue = obj.ReadValue<float>();
+        int goalIndex = CurrentLaneIndex;
         if (InputValue > 0)
         {
-            MoveRight();
+            if (goalIndex == LaneTransforms.Length - 1) return;
+            goalIndex++;
         }
         else
         {
-            MoveLeft();
+            if (CurrentLaneIndex == 0) return;
+            goalIndex--;
         }
-        
-    }
 
-    private void MoveLeft()
-    {
-        if (CurrentLaneIndex == 0)
+        Vector3 goalPos = LaneTransforms[goalIndex].position;
+        if (GamePlayStatics.isPositionOccupied(goalPos , BlockageCheckHalfExtend , BlockageCheckTag))
         {
             return;
         }
-
-        CurrentLaneIndex--;
-        Destination = LaneTransforms[CurrentLaneIndex].position;
+        CurrentLaneIndex = goalIndex;
+        Destination = goalPos;
     }
 
-    private void MoveRight()
-    {
-        if (CurrentLaneIndex == LaneTransforms.Length - 1)
-        {
-            return;
-        }
-
-        CurrentLaneIndex++;
-        Destination = LaneTransforms[CurrentLaneIndex].position;
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -117,17 +115,21 @@ public class Player : MonoBehaviour
         if (!IsOnGround())
         {
             animator.SetBool("isOnGround", false);
-            
-            return;
         }
-
-        animator.SetBool("isOnGround", true);
-        
-
+        else
+        {
+            animator.SetBool("isOnGround", true);
+        }
 
         float TransformX = Mathf.Lerp(transform.position.x, Destination.x, Time.deltaTime*moveSpeed);
         transform.position = new Vector3(TransformX, transform.position.y, transform.position.z);
         
+        
+    }
+
+    private void LateUpdate()
+    {
+        playerCamera.transform.position = transform.position + playerCameraOffset;
     }
 
     bool IsOnGround()

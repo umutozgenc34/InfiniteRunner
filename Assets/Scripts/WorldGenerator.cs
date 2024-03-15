@@ -49,7 +49,7 @@ public class WorldGenerator : MonoBehaviour
         foreach (Transform spawnTrans in lanes)
         {
             Vector3 spawnPoint = spawnTrans.position + new Vector3(0, 0, startingPoint.position.z);
-            if (!isPositionOccupied(spawnPoint , occupationCheckTag))
+            if (!GamePlayStatics.isPositionOccupied(spawnPoint ,OccupationDetectionHalfExtend, occupationCheckTag))
             {
                 AvaliableSpawnPoints.Add(spawnPoint);
             }
@@ -57,18 +57,7 @@ public class WorldGenerator : MonoBehaviour
         return AvaliableSpawnPoints.ToArray();
     }
 
-    bool isPositionOccupied(Vector3 position , string occupationCheckTag)
-    {
-        Collider[] cols = Physics.OverlapBox(position, OccupationDetectionHalfExtend);
-        foreach (Collider col in cols)
-        {
-            if (col.gameObject.tag == occupationCheckTag)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
     void Start()
     {

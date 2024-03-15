@@ -133,13 +133,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  moveSpeed: 20
-  jumpHeight: 1.5
+  moveSpeed: 10
+  jumpHeight: 2.8
   groundCheckTransform: {fileID: 3864642917847967838}
   groundCheckRadius: 0.2
   GroundCheckMask:
     serializedVersion: 2
     m_Bits: 64
+  BlockageCheckHalfExtend: {x: 0.5, y: 0.5, z: 0.25}
+  BlockageCheckTag: Threat
 --- !u!54 &3412490623832746686
 Rigidbody:
   m_ObjectHideFlags: 0

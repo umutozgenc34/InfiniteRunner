@@ -50,10 +50,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2902889535418276010, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
       propertyPath: m_Name
-      value: Threat
+      value: Train
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2902889535418276010, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8402948650844854715}
   m_SourcePrefab: {fileID: 100100000, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+--- !u!114 &7192299618590458676 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3983614455201126253, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+  m_PrefabInstance: {fileID: 6095774206746481753}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994155743415553267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac705343af9b0d41a2fdb4b091d178c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8994155743415553267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2902889535418276010, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+  m_PrefabInstance: {fileID: 6095774206746481753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8402948650844854715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994155743415553267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9de58a3139d6844d9eab98700c5ed77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentPrefab: {fileID: 4512838552935167945, guid: 7ddc2542cf5c2524db31e1a292295006, type: 3}
+  SegmentCountRange: {x: 4, y: 12}
+  threat: {fileID: 7192299618590458676}

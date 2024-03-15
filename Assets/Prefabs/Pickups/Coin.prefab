@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5a7adf0b1332c489a1681db11fb56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SpawnInterval: 2
+  _SpawnInterval: 0.2
   movementComp: {fileID: 2147340231275989618}
   scoreEffect: 1
   speedEffect: 0
