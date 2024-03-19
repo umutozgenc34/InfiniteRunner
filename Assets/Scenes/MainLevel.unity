@@ -141,6 +141,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4153111740067395414, guid: 9447b60aacee13d4686849665ba6856b, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153111740067395414, guid: 9447b60aacee13d4686849665ba6856b, type: 3}
       propertyPath: LaneTransforms.Array.data[0]
       value: 
       objectReference: {fileID: 1734965019}
@@ -209,6 +213,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 805315361671270216, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 18.826
+      objectReference: {fileID: 0}
     - target: {fileID: 3644487656534129072, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -253,6 +261,22 @@ PrefabInstance:
       propertyPath: OccupationDetectionHalfExtend.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3850577061924027617, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
+      propertyPath: roadBlocks.Array.data[0].Weight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850577061924027617, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
+      propertyPath: roadBlocks.Array.data[1].Weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850577061924027617, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
+      propertyPath: roadBlocks.Array.data[0].RoadBlock
+      value: 
+      objectReference: {fileID: 5678888130513429866, guid: e00e5932ff2d91847830b4b9678f9bc0, type: 3}
+    - target: {fileID: 3850577061924027617, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
+      propertyPath: roadBlocks.Array.data[1].RoadBlock
+      value: 
+      objectReference: {fileID: 5678888130513429866, guid: aaefbbad53953d8458408c3f3947a15f, type: 3}
     - target: {fileID: 8213784556147975088, guid: d72a46ab0cbcdce478de9c06c954594a, type: 3}
       propertyPath: m_Name
       value: WorldGenerator

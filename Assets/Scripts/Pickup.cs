@@ -26,7 +26,7 @@ public class Pickup : Spawnable
                 scoreKeeper.ChangeScore(scoreEffect);
             }
 
-            Destroy(gameObject);
+            PickedUpBy(other.gameObject);
         }
 
         if (other.gameObject.tag == "Threat" && !bAdjusted )
@@ -38,5 +38,10 @@ public class Pickup : Spawnable
                 transform.position = col.bounds.center +( col.bounds.extents.y + gameObject.GetComponent<Collider>().bounds.center.y) * Vector3.up;
             }
         }
+    }
+
+    protected virtual void PickedUpBy(GameObject picker)
+    {
+        Destroy(gameObject);
     }
 }

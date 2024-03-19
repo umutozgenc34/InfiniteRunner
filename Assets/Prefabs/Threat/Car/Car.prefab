@@ -68,6 +68,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2360684436047283059, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6336
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360684436047283059, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.58381
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360684436047283059, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360684436047283059, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.177
+      objectReference: {fileID: 0}
     - target: {fileID: 2902889535418276010, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
       propertyPath: m_Name
       value: Car

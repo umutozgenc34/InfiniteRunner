@@ -48,6 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2360684436047283059, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2555834
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360684436047283059, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.434
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360684436047283059, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.06
+      objectReference: {fileID: 0}
     - target: {fileID: 2902889535418276010, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
       propertyPath: m_Name
       value: Train
