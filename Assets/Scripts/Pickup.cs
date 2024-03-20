@@ -35,7 +35,7 @@ public class Pickup : Spawnable
             if (col != null)
             {
                 bAdjusted = true;
-                transform.position = col.bounds.center +( col.bounds.extents.y + gameObject.GetComponent<Collider>().bounds.center.y) * Vector3.up;
+                transform.position = col.bounds.center + col.bounds.extents.y * Vector3.up;
             }
         }
     }

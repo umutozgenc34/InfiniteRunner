@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5a6eb0747b7b24cacfdbb4db662416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SpawnInterval: 1
+  _SpawnInterval: 7.34
   movementComp: {fileID: -1079605403947711225}
   scoreEffect: -5
   speedEffect: -5

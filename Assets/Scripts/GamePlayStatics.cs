@@ -10,7 +10,7 @@ public static class GamePlayStatics
         Collider[] cols = Physics.OverlapBox(position, DetectionHalfExtend);
         foreach (Collider col in cols)
         {
-            if (col.gameObject.tag == occupationCheckTag)
+            if (col.gameObject.tag == occupationCheckTag || col.gameObject.tag == "NoSpawn")
             {
                 return true;
             }

@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Train
       objectReference: {fileID: 0}
+    - target: {fileID: 3983614455201126253, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: _SpawnInterval
+      value: 5.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
