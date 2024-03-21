@@ -89,7 +89,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 18.826, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2158211556391248623}
@@ -326,8 +326,10 @@ MonoBehaviour:
   startingPoint: {fileID: 2158211556391248623}
   endPoint: {fileID: 4363056587968130600}
   roadBlocks:
-  - {fileID: 5678888130513429866, guid: e00e5932ff2d91847830b4b9678f9bc0, type: 3}
-  - {fileID: 5678888130513429866, guid: aaefbbad53953d8458408c3f3947a15f, type: 3}
+  - RoadBlock: {fileID: 5678888130513429866, guid: e00e5932ff2d91847830b4b9678f9bc0, type: 3}
+    Weight: 6
+  - RoadBlock: {fileID: 5678888130513429866, guid: aaefbbad53953d8458408c3f3947a15f, type: 3}
+    Weight: 1
   buildings:
   - {fileID: 919132149155446097, guid: b051645bbc0ce3a498c2d1bf85a22c0e, type: 3}
   - {fileID: 919132149155446097, guid: bd5c1bc66cf526040987d0aa72839cd3, type: 3}
@@ -352,6 +354,8 @@ MonoBehaviour:
   - {fileID: 1683951819367232683}
   pickups:
   - {fileID: 516419223946239590, guid: 3893b380409986345a54ae2d85ae3443, type: 3}
+  - {fileID: 7343388888903537934, guid: 4df6fcadfbdc2bb46beb3035366bdf8a, type: 3}
+  - {fileID: 516419223946239590, guid: c00166ede82a5b24b968fa585e6ab89f, type: 3}
 --- !u!54 &4967905744262330961
 Rigidbody:
   m_ObjectHideFlags: 0

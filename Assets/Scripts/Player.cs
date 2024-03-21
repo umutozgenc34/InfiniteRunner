@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     Vector3 Destination;
 
+    [SerializeField] InGameUI playerUI;
+    
     int CurrentLaneIndex;
 
     Animator animator;
@@ -48,6 +50,7 @@ public class Player : MonoBehaviour
     {
         playerInput.Gameplay.Move.performed += MovePerformed;
         playerInput.Gameplay.Jump.performed += JumpPerformed;
+        playerInput.Gameplay.Pause.performed += TogglePause;
         for (int i = 0; i < LaneTransforms.Length; i++)
         {
             if (LaneTransforms[i].position == transform.position)
@@ -61,6 +64,17 @@ public class Player : MonoBehaviour
         playerCamera = Camera.main;
         playerCameraOffset = playerCamera.transform.position - transform.position;
 
+    }
+
+    private void TogglePause(InputAction.CallbackContext obj)
+    {
+        GameMode gameMode = GamePlayStatics.GetGameMode();
+        if (gameMode != null && !gameMode.IsGameOver())
+        {
+            gameMode.TogglePause();
+            playerUI.SingnalPause(gameMode.IsGamePaused());
+        }
+        
     }
 
     private void JumpPerformed(InputAction.CallbackContext obj)
