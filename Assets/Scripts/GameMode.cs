@@ -83,4 +83,9 @@ public class GameMode : MonoBehaviour
     {
         return bIsGameOver;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

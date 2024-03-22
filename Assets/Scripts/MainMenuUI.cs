@@ -9,6 +9,11 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] Transform howToPlayMenu;
     [SerializeField] Transform leaderBoardMenu;
 
+    public void Start()
+    {
+        
+        SaveDataManager.SavePlayerProfile("TestPlayer");
+    }
     public void StartGame()
     {
         GamePlayStatics.GetGameMode().LoadFirstLevel();
@@ -22,5 +27,15 @@ public class MainMenuUI : MonoBehaviour
     public void GoToHowToPlayMenu()
     {
         menuSwitcher.SetActiveUI(howToPlayMenu);
+    }
+
+    public void GoToLeaderBoardMenu()
+    {
+        menuSwitcher.SetActiveUI(leaderBoardMenu);
+    }
+
+    public void QuitGame()
+    {
+        GamePlayStatics.GetGameMode().QuitGame();
     }
 }
