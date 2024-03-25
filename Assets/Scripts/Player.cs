@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 BlockageCheckHalfExtend;
     [SerializeField] string BlockageCheckTag = "Threat";
 
+    [Header("Audio")]
+    [SerializeField] AudioClip jumpAudioClip;
+    [SerializeField] AudioClip moveAudioClip;
+    [SerializeField] AudioSource actionAudioSource;
+
     Vector3 Destination;
 
     [SerializeField] InGameUI playerUI;
@@ -89,6 +94,8 @@ public class Player : MonoBehaviour
         {
             float jumpUpSpeed = Mathf.Sqrt(2 * jumpHeight * Physics.gravity.magnitude);
             rb.AddForce(new Vector3(0f, jumpUpSpeed, 0f), ForceMode.VelocityChange);
+            actionAudioSource.clip = jumpAudioClip;
+            actionAudioSource.Play();
         }
     }
 
@@ -117,6 +124,8 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        actionAudioSource.clip = moveAudioClip;
+        actionAudioSource.Play();
         CurrentLaneIndex = goalIndex;
         Destination = goalPos;
     }

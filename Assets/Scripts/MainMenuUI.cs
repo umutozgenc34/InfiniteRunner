@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -8,11 +10,13 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] Transform mainMenu;
     [SerializeField] Transform howToPlayMenu;
     [SerializeField] Transform leaderBoardMenu;
+    [SerializeField] Transform createPlayerProfileMenu;
+    [SerializeField] TMP_InputField newPlayerNameField;
 
     public void Start()
     {
         
-        SaveDataManager.SavePlayerProfile("TestPlayer");
+        
     }
     public void StartGame()
     {
@@ -37,5 +41,15 @@ public class MainMenuUI : MonoBehaviour
     public void QuitGame()
     {
         GamePlayStatics.GetGameMode().QuitGame();
+    }
+
+    public void SwitchToPlayerProfileMenu()
+    {
+        menuSwitcher.SetActiveUI(createPlayerProfileMenu);
+    }
+
+    public void AddPlayerProfile()
+    {
+        string newPlayerName = newPlayerNameField.text;
     }
 }

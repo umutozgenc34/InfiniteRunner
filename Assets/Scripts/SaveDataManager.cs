@@ -33,8 +33,28 @@ public class SaveDataManager
 
     public static void SavePlayerProfile(string playerName)
     {
-        PlayerProfilesData data = new PlayerProfilesData(new List<string> { playerName });
+        GetSavedPlayerProfile(out List<string> players);
+        if (players.Contains(playerName))
+        {
+            return;
+        }
+        players.Insert(0,playerName);
+        PlayerProfilesData data = new PlayerProfilesData(players);
         string dataJSON = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetPlayerProfileSaveDir(), dataJSON);
+    }
+
+    public static bool GetSavedPlayerProfile(out List<string> data)
+    {
+        if (File.Exists(GetPlayerProfileSaveDir()))
+        {
+            string dataJSON = File.ReadAllText(GetPlayerProfileSaveDir());
+            PlayerProfilesData loadedData = JsonUtility.FromJson<PlayerProfilesData>(dataJSON);
+            data = loadedData.playerNames;
+            return true;
+        }
+        data = new List<string>();
+        return false;
+        
     }
 }

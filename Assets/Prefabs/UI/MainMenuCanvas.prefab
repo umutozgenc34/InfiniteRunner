@@ -901,6 +901,7 @@ MonoBehaviour:
   mainMenu: {fileID: 5355286371887316890}
   howToPlayMenu: {fileID: 8082975204194632755}
   leaderBoardMenu: {fileID: 1274560840553220643}
+  createPlayerProfileMenu: {fileID: 2991157203199185003}
 --- !u!1 &2522664647563427377
 GameObject:
   m_ObjectHideFlags: 0
