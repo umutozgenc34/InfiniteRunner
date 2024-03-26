@@ -172,8 +172,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 128859341787817975, guid: d9fa77e313b47a144a823952076735b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8645465548583655754}
   m_SourcePrefab: {fileID: 100100000, guid: d9fa77e313b47a144a823952076735b2, type: 3}
+--- !u!1 &406117541181573873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 128859341787817975, guid: d9fa77e313b47a144a823952076735b2, type: 3}
+  m_PrefabInstance: {fileID: 318380239089446150}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8645465548583655754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406117541181573873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51543f54ebdfec04a872e3af9eb7c2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerTag: Player
+  audioToPlay: {fileID: 8300000, guid: eb1223253b6d646438e752ff98f73281, type: 3}
+  volume: 1
+  pitch: 1
+  audioPlayerPrefab: {fileID: 5809832691231825332, guid: fffcc5b08b267aa48bf5bfb7ada0ecf3, type: 3}
 --- !u!4 &2360684436047283059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2641863517791743605, guid: d9fa77e313b47a144a823952076735b2, type: 3}

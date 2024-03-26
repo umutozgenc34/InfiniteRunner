@@ -31,7 +31,7 @@ public class InGameUI : MonoBehaviour
 
     private void UpdateScoreText(int newVal)
     {
-        scoreText.SetText($"Score : {newVal}");
+        scoreText.SetText($"{newVal}");
     }
 
     // Update is called once per frame

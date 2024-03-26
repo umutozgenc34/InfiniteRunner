@@ -68,6 +68,14 @@ PrefabInstance:
       propertyPath: _SpawnInterval
       value: 5.02
       objectReference: {fileID: 0}
+    - target: {fileID: 8645465548583655754, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: pitch
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645465548583655754, guid: d558996628a487c4e91eab43a4a3353a, type: 3}
+      propertyPath: volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
