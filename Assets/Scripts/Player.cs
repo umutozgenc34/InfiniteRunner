@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     {
         playerInput.Gameplay.Move.performed += MovePerformed;
         playerInput.Gameplay.Jump.performed += JumpPerformed;
-        playerInput.Gameplay.Pause.performed += TogglePause;
+        playerInput.Menu.Pause.performed += TogglePause;
         for (int i = 0; i < LaneTransforms.Length; i++)
         {
             if (LaneTransforms[i].position == transform.position)
@@ -74,6 +74,14 @@ public class Player : MonoBehaviour
     private void TogglePause(InputAction.CallbackContext obj)
     {
         GameMode gameMode = GamePlayStatics.GetGameMode();
+        if (playerInput.Gameplay.enabled)
+        {
+            playerInput.Gameplay.Disable();
+        }
+        else
+        {
+            playerInput.Gameplay.Enable();
+        }
         if (gameMode != null && !gameMode.IsGameOver())
         {
             gameMode.TogglePause();
